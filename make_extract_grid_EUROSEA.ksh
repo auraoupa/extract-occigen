@@ -1,0 +1,2 @@
+script_extract_grid_eNATL60.ksh COSNWA
+script_extract_grid_eNATL60.ksh MEDBAL

@@ -16,7 +16,7 @@ case $REG in
         GULF) coord='-d x,989,1640 -d y,236,1845'; sREG=GULF;; #the good one, without islands989
         EGULF) coord='-d x,988,2320 -d y,166,1283'; sREG=EGULF;;
         EATL) coord='-d x,2113,3913 -d y,1014,2094'; sREG=EATL;;
-        LMX) coord='-d x,4537,5401 -d y,585,1407'; sREG=LMX;;
+        LMX) coord='-d x,389,1420 -d y,310,1065'; sREG=LMX;;
 esac
 
 dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/$REG

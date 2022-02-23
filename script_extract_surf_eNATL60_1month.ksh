@@ -17,6 +17,7 @@ case $REG in
 	OSMOSISb) coord='-d x,4424,4831 -d y,2630,3535'; sREG=OSMOb;;
         EOSMO) coord='-d x,4461,5340 -d y,2333,3895'; sREG=EOSMO;;
         EGULF) coord='-d x,1464,3106 -d y,1478,2774'; sREG=EGULF;;
+        SICIL) coord='-d x,6352,6935 -d y,1656,2311'; sREG=SICIL;;
 esac
 
 dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/$REG
@@ -64,6 +65,7 @@ for month in $MONTH; do
         sozocrtx) filetyp=gridU-2D;;
         somecrty) filetyp=gridV-2D;;
         somxl010) filetyp=gridT-2D;;
+        flxT|gridT-2D|gridU-2D|gridV-2D) filetyp=$var;;
       esac
 
       stdir=/store/CT1/hmg2840/lbrodeau/${CONFIG}/${CONFIG}-${CASEi}-S
@@ -71,7 +73,13 @@ for month in $MONTH; do
       for file in $(ls $stdir/*/${CONFIG}-${CASEi}_${FREQ}_*_${filetyp}_${year}${mm}${dd}-${year}${mm}${dd}.nc); do
 
  	fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}.nc
-	if [ ! -f  $fileo ]; then echo $fileo; ncks -O -F $coord -v ${var} $file $fileo; fi
+	if [ ! -f  $fileo ]; then 
+		echo $fileo
+		case $var in
+			flxT|gridT-2D|gridU-2D|gridV-2D) ncks -O -F $coord $file $fileo;;
+			            *) ncks -O -F $coord -v ${var} $file $fileo;;
+		esac
+	fi
 
       done
     done

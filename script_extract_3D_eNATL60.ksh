@@ -20,25 +20,30 @@ case $REG in
 	EGULF) coord='-d x,1464,3106 -d y,1478,2774'; sREG=EGULF;;
 	OSMOSISc) coord='-d x,4879,4879 -d y,2944,2944'; sREG=OSMOSISc;;
 	MOMAR) coord='-d x,3938,3938 -d y,2028,2028'; sREG=MOMAR;;
+	SICIL) coord='-d x,6352,6935 -d y,1656,2311'; sREG=SICIL;;
 esac
 
 LEV1=$( echo $LEVS | awk -F- '{print $1}' )
 LEV2=$( echo $LEVS | awk -F- '{print $2}' )
 
-case $LEV1 in
-	0) indZ1=1;;
-	15) indZ1=10;;
-esac
+if [ ! -z $LEV1 ]; then
 
-if [ -z $LEV2 ]; then
-	indZ2=$indZ1
-else
-
-	case $LEV2 in
-		1000) indZ2=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
-		2000) indZ2=158;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
-		bot) indZ2=300;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
+	case $LEV1 in
+		0) indZ1=1;;
+		15) indZ1=10;;
+		1000) indZ1=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 	esac
+
+	if [ -z $LEV2 ]; then
+		indZ2=$indZ1
+	else
+
+		case $LEV2 in
+			1000) indZ2=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
+			2000) indZ2=158;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
+			bot) indZ2=300;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
+		esac
+	fi
 fi
 
 dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/$REG
@@ -64,8 +69,15 @@ for var in $VAR; do
 		year=${DATE:0:4}
 		mm=${DATE:4:2}
 		dd=${DATE:6:2}
- 		fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}_${LEVS}m.nc
-		if [ ! -f  $fileo ]; then echo $fileo; ncks -O -F $coord -d $dimZ,$indZ1,$indZ2 -v ${var} $file $fileo; fi
+ 		if [ ! -z $LEV1 ]; then fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}_${LEVS}m.nc; else fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}.nc; fi
+		if [ ! -f  $fileo ]; then 
+			echo $fileo 
+			if [ ! -z $LEV1 ]; then
+				ncks -O -F $coord -d $dimZ,$indZ1,$indZ2 -v ${var} $file $fileo
+			else
+				ncks -O -F $coord -v ${var} $file $fileo
+			fi
+		fi
 
  	done
  done

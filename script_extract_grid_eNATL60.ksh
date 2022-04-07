@@ -7,6 +7,7 @@ LEVS=$2
 CONFIG=eNATL60
 
 case $REG in
+	LION) coord='-d x,6126,6135 -d y,2439,2448'; sREG=LION;;
 	NOE) coord='-d x,4014,4134 -d y,1438,1576'; sREG=NOE;;
 	ACOl) coord='-d x,3774,4789 -d y,1507,2235'; sREG=ACOl;;
 	MEDWEST) coord='-d x,5530,6412 -d y,1870,2672'; sREG=MEDWEST;;
@@ -19,6 +20,9 @@ case $REG in
 	EGULF) coord='-d x,1464,3106 -d y,1478,2774'; sREG=EGULF;;
 	MOMAR) coord='-d x,3938,3938 -d y,2028,2028'; sREG=MOMAR;;
 	LAB) coord='-d x,2450,3392 -d y,3618,4365'; sREG=LAB;;
+        DYF) coord='-d x,6297,6351 -d y,2513,2605'; sREG=DYF;;
+	SICIL) coord='-d x,6352,6935 -d y,1656,2311'; sREG=SICIL;;
+	pDYF) coord='-d x,6323,6323 -d y,2582,2582'; sREG=pDYF;;
 esac
 
 dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-I

@@ -10,6 +10,7 @@ LEVS=$6
 CONFIG=eNATL60
 
 case $REG in
+        LION) coord='-d x,6126,6135 -d y,2439,2448'; sREG=LION;;
         NOE) coord='-d x,4014,4134 -d y,1438,1576'; sREG=NOE;;
         MEDWEST) coord='-d x,5530,6412 -d y,1870,2672'; sREG=MEDWEST;;
         NANFL) coord='-d x,2574,3478 -d y,1509,2236'; sREG=NANFL;;
@@ -21,6 +22,8 @@ case $REG in
 	OSMOSISc) coord='-d x,4879,4879 -d y,2944,2944'; sREG=OSMOSISc;;
 	MOMAR) coord='-d x,3938,3938 -d y,2028,2028'; sREG=MOMAR;;
 	SICIL) coord='-d x,6352,6935 -d y,1656,2311'; sREG=SICIL;;
+	pDYF) coord='-d x,6323,6323 -d y,2582,2582'; sREG=pDYF;;
+	DYF) coord='-d x,6296,6349 -d y,2535,2629'; sREG=DYF;;
 esac
 
 LEV1=$( echo $LEVS | awk -F- '{print $1}' )
@@ -39,6 +42,8 @@ if [ ! -z $LEV1 ]; then
 	else
 
 		case $LEV2 in
+			175) indZ2=175;; 
+			2500) indZ2=179;; 
 			1000) indZ2=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 			2000) indZ2=158;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 			bot) indZ2=300;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt

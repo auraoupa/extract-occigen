@@ -45,15 +45,6 @@ for month in $MONTH; do
     	esac
 
     	for day in $(seq $day1 $day2); do
-		case $month in
-	        	7|8|9|10) CASEi=${CASE};;
-	                12|1|2|3|4|5|6|19|20|21|22) CASEi=${CASE}X;;
-		        11) case $CASE in
-                        	'BLB002') dayt=17;;
-                                'BLBT02') dayt=7;;
-                            esac
-                            if [ $day -lt $dayt ]; then CASEi=${CASE}; else CASEi=${CASE}X; fi;;
-	    	esac
 
     	    	case $month in
 			1|2|3|4|5|6|7|8|9|10|11|12) monthi=$month;;
@@ -67,38 +58,20 @@ for month in $MONTH; do
         	dd=$(printf "%02d" $day)
 
 
-    		for var in $VAR; do
 
-      			case $var in
-        			sossheig) filetyp=gridT-2D;;
-			        sosstsst) filetyp=gridT-2D;;
-			        sosaline) filetyp=gridT-2D;;
-			        sozocrtx) filetyp=gridU-2D;;
-			        sozotaux) filetyp=gridU-2D;;
-			        somecrty) filetyp=gridV-2D;;
-			        sometauy) filetyp=gridV-2D;;
-			        somxl010) filetyp=gridT-2D;;
-			        flxT|gridT-2D|gridU-2D|gridV-2D) filetyp=$var;;
-			esac
+      		stdir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/eNATL60
 
-      			stdir=/store/CT1/hmg2840/lbrodeau/${CONFIG}/${CONFIG}-${CASEi}-S
+		for file in $(ls $stdir/${CONFIG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${VAR}.nc); do
 
+			fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${VAR}.nc
+			if [ ! -f  $fileo ]; then 
+				echo $fileo
+				ncks -O -F $coord $file $fileo
+			fi
 
-			for file in $(ls $stdir/*/${CONFIG}-${CASEi}_${FREQ}_*_${filetyp}_${year}${mm}${dd}-${year}${mm}${dd}.nc); do
-
-			 	fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}.nc
-				if [ ! -f  $fileo ]; then 
-					echo $fileo
-					case $var in
-						flxT|gridT-2D|gridU-2D|gridV-2D) ncks -O -F $coord $file $fileo;;
-					        *) ncks -O -F $coord -v ${var} $file $fileo;;
-					esac
-				fi
-
-			done
 		done
-
 	done
+
 done
 
 

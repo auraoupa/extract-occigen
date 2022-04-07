@@ -24,5 +24,5 @@ for day in $(seq $day1 $day2); do
         dd=$(printf "%02d" $day)
 	date=${year}${mm}${dd}
 
-	./script_extract_3D_eNATL60.ksh REG BLB002 1h VAR ${date}
+	./script_extract_3D_eNATL60.ksh REG BLB002 1h VAR ${date} 0-2500
 done

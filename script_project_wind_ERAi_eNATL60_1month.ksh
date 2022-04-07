@@ -1,4 +1,7 @@
-month=MONTH
+#!/bin/bash
+
+month=$1
+CASE=$2
 
 case $month in
       7|8|9|10|11|12) year=2009;;
@@ -13,16 +16,20 @@ esac
 
 for day in $(seq $day1 $day2); do
 
-	case $month in
-        	1|2|3|4|5|6|7|8|9|10|11|12) monthi=$month;;
+        case $month in
+                1|2|3|4|5|6|7|8|9|10|11|12) monthi=$month;;
                 19) monthi=7;;
                 20) monthi=8;;
                 21) monthi=9;;
                 22) monthi=10;;
         esac
-	mm=$(printf "%02d" $monthi)
+        mm=$(printf "%02d" $monthi)
         dd=$(printf "%02d" $day)
-	date=${year}${mm}${dd}
+        date=y${year}m${mm}d${dd}
 
-	./script_extract_3D_eNATL60.ksh REG BLB002 1h VAR ${date}
+	./script_project_wind_ERAi_eNATL60_1day.ksh $date $CASE
+
+
 done
+
+

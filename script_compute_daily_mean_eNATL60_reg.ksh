@@ -10,13 +10,14 @@ MONTH=$5
 
 CONFIG=eNATL60
 
-dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/1d/${REG}
+dir=/work/aalbert/${CONFIG}/${CONFIG}-${CASE}-S/1d/${REG}
 mkdir -p $dir
 cd $dir
 
 case $REG in
 	MEDWEST-degrad) sREG=MEDWEST;;
 	NANFL-degrad) sREG=NANFL;;
+	eNATL60) sREG='';;
 esac
 
 for month in $MONTH; do
@@ -35,10 +36,10 @@ for month in $MONTH; do
 	    dd=$(printf "%02d" $day)
 	    for var in $VAR; do
 
-		stdir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/${REG}
+		stdir=/work/aalbert/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/${REG}
 		fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.1d_${var}
       		files=$stdir/${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}.nc
-		if [ ! -f  ${fileo}.nc ]; then echo ${fileo}; cdfmoy -l $files -o $fileo -nc4; fi
+		if [ ! -f  ${fileo}.nc ]; then echo ${fileo}; /work/aalbert/git/CDFTOOLS/bin/cdfmoy -l $files -o $fileo -nc4; fi
 
 	    done
     done

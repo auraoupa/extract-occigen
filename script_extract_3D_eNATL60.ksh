@@ -24,6 +24,7 @@ case $REG in
 	SICIL) coord='-d x,6352,6935 -d y,1656,2311'; sREG=SICIL;;
 	pDYF) coord='-d x,6323,6323 -d y,2582,2582'; sREG=pDYF;;
 	DYF) coord='-d x,6296,6349 -d y,2535,2629'; sREG=DYF;;
+	TURK) coord='-d x,7358,7703 -d y,2245,2565'; sREG=TURK;;
 esac
 
 LEV1=$( echo $LEVS | awk -F- '{print $1}' )
@@ -42,6 +43,7 @@ if [ ! -z $LEV1 ]; then
 	else
 
 		case $LEV2 in
+			163) indZ2=163;; 
 			175) indZ2=175;; 
 			2500) indZ2=179;; 
 			1000) indZ2=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
@@ -51,7 +53,7 @@ if [ ! -z $LEV1 ]; then
 	fi
 fi
 
-dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/$REG
+dir=/work/aalbert/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/$REG
 
 mkdir -p $dir
 cd $dir

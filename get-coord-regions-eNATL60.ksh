@@ -21,4 +21,6 @@ cdffindij -w -32.267 -32.267 37.283 37.283 -c /store/CT1/hmg2840/lbrodeau/eNATL6
 /scratch/cnt0024/ige2071/aalbert/git/CDFTOOLS/bin/cdffindij -w 8 8 43.5 43.5 -c /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/eNATL60_coordinates_v3.nc4
 #DYF : 6297      6351      2513      2605
 /scratch/cnt0024/ige2071/aalbert/git/CDFTOOLS/bin/cdffindij -w 7.5 8.5 42.75 43.75 -c /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/eNATL60_coordinates_v3.nc4
+#TURK : 7358      7703      2245      2565
+/work/aalbert/git/CDFTOOLS/bin/cdffindij -w 25 31 39 42 -c /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/eNATL60_coordinates_v3.nc4
 

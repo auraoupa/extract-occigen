@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH -J vertmean
+#SBATCH -e vertmean.e%j
+#SBATCH -o vertmean.o%j
+#SBATCH --time=06:00:00
+#SBATCH --exclusive
+#SBATCH --constraint=VISU
 
 for CASE in BLB002; do
 		for month in $(seq 1 12) 19; do

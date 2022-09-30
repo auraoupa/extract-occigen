@@ -23,9 +23,11 @@ case $REG in
         DYF) coord='-d x,6297,6351 -d y,2513,2605'; sREG=DYF;;
 	SICIL) coord='-d x,6352,6935 -d y,1656,2311'; sREG=SICIL;;
 	pDYF) coord='-d x,6323,6323 -d y,2582,2582'; sREG=pDYF;;
+	BBOX) coord='-d x,2879,4669 -d y,1506,3048'; sREG=BBOX;;
+	TURK) coord='-d x,7358,7703 -d y,2245,2565'; sREG=TURK;;
 esac
 
-dir=$SCRATCHDIR/${CONFIG}/${CONFIG}-I
+dir=/work/aalbert/${CONFIG}/${CONFIG}-I
 mkdir -p $dir
 cd $dir
 

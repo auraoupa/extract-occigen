@@ -5,10 +5,12 @@ CASE=$2
 FREQ=$3
 VAR=$4
 MONTH=$5
+DEP=$6
 
 CONFIG=eNATL60
 
 case $REG in
+        eNATL60) coord=''; sREG='';;
         MEDWEST) coord='-d x,5530,6412 -d y,1870,2672'; sREG=MEDWEST;;
         NANFL) coord='-d x,2574,3478 -d y,1509,2236'; sREG=NANFL;;
         COSNWA) coord='-d x,2905,3027 -d y,1829,1976'; sREG=COSNWA;;
@@ -21,14 +23,19 @@ case $REG in
 	LION) coord='-d x,6126,6135 -d y,2439,2448'; sREG=LION;;
 	DYF) coord='-d x,6297,6351 -d y,2513,2605'; sREG=DYF;;
 	pDYF) coord='-d x,6323,6323 -d y,2582,2582'; sREG=pDYF;;
-        TURK) coord='-d x,7358,7703 -d y,2245,2565'; sREG=TURK;;
+
 esac
 
 dir=/work/aalbert/${CONFIG}/${CONFIG}-${CASE}-S/${FREQ}/$REG
 
 mkdir -p $dir
 
-
+case $DEP in
+	60m) levt=23; levw=23;;
+	61m)  levw=24;;
+	600m) levt=81; levw=81;;
+	601m)  levw=82;;
+esac
 cd $dir
 
 for month in $MONTH; do
@@ -70,15 +77,9 @@ for month in $MONTH; do
     		for var in $VAR; do
 
       			case $var in
-        			sossheig) filetyp=gridT-2D;;
-			        sosstsst) filetyp=gridT-2D;;
-			        sosaline) filetyp=gridT-2D;;
-			        sozocrtx) filetyp=gridU-2D;;
-			        sozotaux) filetyp=gridU-2D;;
-			        somecrty) filetyp=gridV-2D;;
-			        sometauy) filetyp=gridV-2D;;
-			        somxl010) filetyp=gridT-2D;;
-			        flxT|gridT-2D|gridU-2D|gridV-2D) filetyp=$var;;
+			        votemper) filetyp=gridT; dep=deptht;LEV=$levt;;
+			        vosaline) filetyp=gridS; dep=deptht;LEV=$levt;;
+			        vovecrtz) filetyp=gridW; dep=depthw;LEV=$levw;;
 			esac
 
       			stdir=/store/CT1/hmg2840/lbrodeau/${CONFIG}/${CONFIG}-${CASEi}-S
@@ -86,13 +87,10 @@ for month in $MONTH; do
 
 			for file in $(ls $stdir/*/${CONFIG}-${CASEi}_${FREQ}_*_${filetyp}_${year}${mm}${dd}-${year}${mm}${dd}.nc); do
 
-			 	fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}.nc
+			 	fileo=${CONFIG}${sREG}-${CASE}_y${year}m${mm}d${dd}.${FREQ}_${var}_${DEP}.nc
 				if [ ! -f  $fileo ]; then 
 					echo $fileo
-					case $var in
-						flxT|gridT-2D|gridU-2D|gridV-2D) ncks -O -F $coord $file $fileo;;
-					        *) ncks -O -F $coord -v ${var} $file $fileo;;
-					esac
+					 ncks -O -F $coordi -d $dep,$LEV,$LEV -v ${var} $file $fileo
 				fi
 
 			done

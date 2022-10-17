@@ -9,6 +9,9 @@ MONTH=$5
 CONFIG=eNATL60
 
 case $REG in
+        FAROE) coord='-d x,5342,5693 -d y,4048,4550'; sREG=FAROE;;
+        LIONb) coord='-d x,5980,6438 -d y,2265,2636'; sREG=LIONb;;
+        LABs) coord='-d x,2623,2968 -d y,3617,3986'; sREG=LABs;;
         MEDWEST) coord='-d x,5530,6412 -d y,1870,2672'; sREG=MEDWEST;;
         NANFL) coord='-d x,2574,3478 -d y,1509,2236'; sREG=NANFL;;
         COSNWA) coord='-d x,2905,3027 -d y,1829,1976'; sREG=COSNWA;;

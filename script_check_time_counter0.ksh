@@ -10,8 +10,7 @@ echo "checking "$VAR" files in /work/aalbert/"$CONFIG"/"${CONFIG}"-"${CASE}"-S/"
 for file in $(ls /work/aalbert/$CONFIG/${CONFIG}-${CASE}-S/$FREQ/$REG/${CONFIG}${sREG}-${CASE}_*.${FREQ}_${VAR}.nc); do 
 	tt=$(ncdump -h $file | grep UNLIMITED | awk -F\( '{print $2}' | awk '{print $1}')
 	if [ $tt -eq '0' ]; then
-		echo "deleting file "$file
-		rm $file
+		echo $tt $file
 	fi
 done 
 

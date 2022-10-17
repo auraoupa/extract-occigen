@@ -7,7 +7,10 @@ LEVS=$2
 CONFIG=eNATL60
 
 case $REG in
+	FAROE) coord='-d x,5342,5693 -d y,4048,4550'; sREG=FAROE;;
 	LION) coord='-d x,6126,6135 -d y,2439,2448'; sREG=LION;;
+	LIONb) coord='-d x,5980,6438 -d y,2265,2636'; sREG=LIONb;;
+	LABs) coord='-d x,2623,2968 -d y,3617,3986'; sREG=LABs;;
 	NOE) coord='-d x,4014,4134 -d y,1438,1576'; sREG=NOE;;
 	ACOl) coord='-d x,3774,4789 -d y,1507,2235'; sREG=ACOl;;
 	MEDWEST) coord='-d x,5530,6412 -d y,1870,2672'; sREG=MEDWEST;;
@@ -41,13 +44,14 @@ if [ ! -z "$LEVS" ]; then
 	case $LEV2 in
         	1000) indZ2=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
         	2000) indZ2=158;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
+        	200) indZ2=200;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
         	bot) indZ2=300;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 	esac
 fi
 
 stdir=/store/CT1/hmg2840/lbrodeau/${CONFIG}/${CONFIG}-I
 
-for file in coordinates_eNATL60.nc eNATL60_BATHY_GEBCO_2014_2D_msk_v3.1_lb.nc4 mask_eNATL60_3.6.nc mesh_hgr_eNATL60_3.6.nc mesh_zgr_eNATL60_3.6.nc; do
+for file in coordinates_eNATL60.nc eNATL60_BATHY_GEBCO_2014_2D_msk_v3.1_lb.nc4 mask_eNATL60_3.6.nc mesh_hgr_eNATL60_3.6.nc mesh_zgr_eNATL60_3.6.nc mesh_mask_eNATL60_3.6.nc; do
 	echo $file
 	fileo=$(echo $file | sed "s/eNATL60/eNATL60${sREG}/g")
 	if [ $file == 'mesh_hgr_eNATL60_3.6.nc' ] || [ $file == 'mesh_zgr_eNATL60_3.6.nc' ]; then

@@ -7,7 +7,7 @@ VARS=$5
 
 mkdir -p /store/aalbert/${CONFIG}/${CONFIG}-${CASE}-S/$FREQ/$REG
 
-cd $SCRATCHDIR/${CONFIG}/${CONFIG}-${CASE}-S/$FREQ/$REG
+cd /work/aalbert/${CONFIG}/${CONFIG}-${CASE}-S/$FREQ/$REG
 
 for var in $VARS; do 
 	tar -cvf $var.tar *${var}*

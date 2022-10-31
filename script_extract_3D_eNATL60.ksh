@@ -10,6 +10,7 @@ LEVS=$6
 CONFIG=eNATL60
 
 case $REG in
+        FARSHE) coord='-d x,5220,5812 -d y,4048,4550'; sREG=FARSHE;;
         FAROE) coord='-d x,5342,5693 -d y,4048,4550'; sREG=FAROE;;
         LIONb) coord='-d x,5980,6438 -d y,2265,2636'; sREG=LIONb;;
         LABs) coord='-d x,2623,2968 -d y,3617,3986'; sREG=LABs;;
@@ -52,6 +53,7 @@ if [ ! -z $LEV1 ]; then
 			2500) indZ2=179;; 
 			1000) indZ2=107;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 			2000) indZ2=158;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
+			3882) indZ2=237;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 			bot) indZ2=300;; #check /store/CT1/hmg2840/lbrodeau/eNATL60/eNATL60-I/deptht.txt
 		esac
 	fi

@@ -7,6 +7,7 @@ LEVS=$2
 CONFIG=eNATL60
 
 case $REG in
+	FARSHE) coord='-d x,5220,5812 -d y,4048,4550'; sREG=FARSHE;;
 	FAROE) coord='-d x,5342,5693 -d y,4048,4550'; sREG=FAROE;;
 	LION) coord='-d x,6126,6135 -d y,2439,2448'; sREG=LION;;
 	LIONb) coord='-d x,5980,6438 -d y,2265,2636'; sREG=LIONb;;
